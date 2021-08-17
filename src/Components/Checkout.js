@@ -1,16 +1,20 @@
-const Checkout = ({ setTotal, cart, Button }) => {
+const Checkout = ({ total, setTotal, cart, Button, useEffect, finalCart, setFinalCart }) => {
+  
+  
 
   let finalList = () => {
-    let total = handleTotal();
-    let final = cart.map((item, index) => {
-      return (
-        <div key={index} index={index}>
-          {item.name}
-        </div>
-      );
-    });
-    setTotal(total);
-    return { final, total };
+    let totalHoldTemp = handleTotal();
+    // let final = cart.map((item, index) => {
+    //   return (
+    //     <div key={index} index={index}>
+    //       {item.name}
+    //     </div>
+    //   );
+    // });
+    // console.log(JSON.stringify(final));
+    setTotal(totalHoldTemp)
+    // setFinalCart(...final);
+    
   };
 
   const handleTotal = () => {
@@ -20,16 +24,20 @@ const Checkout = ({ setTotal, cart, Button }) => {
     return newTotal;
   };
 
+
   const handleCheckout = (e) => {
     e.preventDefault();
     console.log('Click');
   }
 
+
+  useEffect(finalList, [cart])
+
   return (
     <div className="small-container">
       <h2>Checkout </h2>
-          <Button type="submit" onClick={handleCheckout}>Checkout ${finalList().total}</Button>
-          <div> {finalList().total > 0 && finalList().final} </div>
+          <Button type="submit" onClick={handleCheckout}>Checkout ${total}</Button>
+          
     </div>
   )
 }

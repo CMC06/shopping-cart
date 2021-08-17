@@ -12,6 +12,7 @@ function App() {
   const [items, setItems] = useState([{name:'Apple', country:'USA', cost:3.00, instock: 10}, {name:'Beans', country:'USA', cost:2.00, instock:8}, {name:'Cabbage', country:'USA', cost:1.00, instock:4}]);
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
+  const [finalCart, setFinalCart] = useState([]);
   const [query, setQuery] = useState("http://localhost:1337/products");
   
 
@@ -76,7 +77,7 @@ function App() {
             <Cart cart={cart} deleteCartItem={deleteCartItem} Card={Card} Button={Button} />
           </Col>
           <Col>
-            <Checkout cart={cart} total={total} setTotal={setTotal} Button={Button} />
+            <Checkout cart={cart} total={total} setTotal={setTotal} finalCart={finalCart} setFinalCart={setFinalCart} Button={Button} useEffect={useEffect} />
           </Col>
         </Row>
         <Row>
